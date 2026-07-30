@@ -1,58 +1,90 @@
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
 body {
-	height: 100%;
-	overflow: hidden;
-	background: #0d0d0c;
+  height: 100%;
+  overflow: hidden;
+  background: #0d0d0c;
 }
 
 .scene {
-	position: relative;
-	height: 100vh;
-	/* sized by the active breakpoint (set from JS, single source in config) */
-	perspective: var(--perspective, 1200px);
-	perspective-origin: 50% 50%;
-	overflow: hidden;
-	cursor: grab;
-	touch-action: none;
-	user-select: none;
+  position: relative;
+  height: 100vh;
+  /* sized by the active breakpoint (set from JS, single source in config) */
+  perspective: var(--perspective, 1200px);
+  perspective-origin: 50% 50%;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
 }
 
 .scene:active {
-	cursor: grabbing;
+  cursor: grabbing;
 }
 
 .world {
-	position: absolute;
-	inset: 0;
-	transform-style: preserve-3d;
-	z-index: 0;
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  z-index: 0;
 }
 
 .card {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	width: var(--card-width, 225px);
-	height: var(--card-height, 155px);
-	border-radius: 10px;
-	background-size: cover;
-	background-position: center;
-	will-change: transform, filter;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--card-width, 225px);
+  height: var(--card-height, 155px);
+  border-radius: 10px;
+  background-size: cover;
+  background-position: center;
+  will-change: transform, filter;
 }
 
 /* everything fades into the dark toward the edges of the frame */
 .vignette {
-	position: absolute;
-	inset: 0;
-	z-index: 1;
-	pointer-events: none;
-	background:
-		linear-gradient(to bottom, #0d0d0c 0%, transparent 18%, transparent 82%, #0d0d0c 100%),
-		radial-gradient(ellipse 90% 80% at 50% 50%, transparent 55%, rgba(13, 13, 12, 0.9) 100%);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      #0d0d0c 0%,
+      transparent 18%,
+      transparent 82%,
+      #0d0d0c 100%
+    ),
+    radial-gradient(
+      ellipse 90% 80% at 50% 50%,
+      transparent 55%,
+      rgba(13, 13, 12, 0.9) 100%
+    );
+}
+
+.glass-content {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.hero-title {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 20px;
+  color: white;
+
+  mix-blend-mode: difference;
 }

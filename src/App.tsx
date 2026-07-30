@@ -50,20 +50,21 @@ export function App() {
       <div className="vignette"></div>
 
       <GlassSurface
-        width={300}
-        height={200}
-        borderRadius={50}
+        width={320}
+        height={220}
+        borderRadius={40}
         style={{
           position: "absolute",
           left: "50%",
           top: "50%",
           transform: "translate(-50%, -50%)",
-          zIndex: 9999,
+          zIndex: 100,
         }}
       >
-        <h2>Glass Surface Content</h2>
+        <div className="glass-content">
+          <h1 className="hero-title">HELGA</h1>
+        </div>
       </GlassSurface>
-
     </div>
   );
 }

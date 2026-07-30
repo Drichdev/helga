@@ -1,7 +1,7 @@
 import "$src/style.css";
-import { createCards, renderCards } from "./utils/cards";
-import { createDrag } from "./utils/drag";
-import { createViewportTracker } from "./utils/viewport";
+import { createCards, renderCards } from "./cards";
+import { createDrag } from "./drag";
+import { createViewportTracker } from "./viewport";
 
 
 
@@ -10,8 +10,8 @@ const world = document.getElementById("world");
 if (!scene || !world) throw new Error("Missing .scene or #world root element");
 
 const cards = createCards(world);
-const getView = createViewportTracker();
-const drag = createDrag(scene, () => getView().radius);
+const viewportTracker = createViewportTracker();
+const drag = createDrag(scene, () => viewportTracker.getView().radius);
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const start = performance.now();
@@ -23,7 +23,7 @@ const frame = (now: number): void => {
 	lastFrame = now;
 
 	drag.coast(dt);
-	renderCards(cards, elapsed, drag.state.travel, getView());
+	renderCards(cards, elapsed, drag.state.travel, viewportTracker.getView());
 
 	requestAnimationFrame(frame);
 };
