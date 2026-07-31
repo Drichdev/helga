@@ -2,8 +2,7 @@ import { config } from "./config";
 import { helixAngle, helixTransform, depthFilter, depthOf } from "./helix";
 import { wrap } from "./math";
 import type { Viewport } from "./viewport";
-
-
+import { cardImages } from "./images";
 
 const { strands, perStrand, speed } = config.scene;
 const { palette, paletteStrandOffset } = config.appearance;
@@ -14,8 +13,10 @@ export type Card = {
 	phase: number;
 };
 
-const imageUrl = (strand: number, index: number): string =>
-	`https://picsum.photos/seed/helix-${strand}-${index}/${config.image.width}/${config.image.height}`;
+const imageUrl = (strand: number, index: number): string => {
+	const flatIndex = strand * perStrand + index;
+	return cardImages[flatIndex % cardImages.length]!;
+};
 
 const placeholderColor = (strand: number, index: number): string =>
 	palette[(index + strand * paletteStrandOffset) % palette.length]!;
